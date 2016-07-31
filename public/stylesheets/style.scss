@@ -1,12 +1,37 @@
+@font-face {
+    font-family: 'Coffee Tin';
+    src: url("../fonts/CoffeeTin%20Initials.ttf");
+}
+@font-face {
+    font-family: 'Lounge Bait';
+    src: url("../fonts/LOUNB___.TTF");
+}
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 body {
-  width: 100vw;
-  height: 100vh;
-  background-image: url(../images/green_felt.jpeg);
-  background-size: cover;
-  background-position: left;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+.blackjackTable {
+    background-image: url("../images/green_felt.jpeg");
+    background-color: white;
+    background-size: cover;
+    background-position: left;
+    background-clip: content-box;
+    border: 20px outset maroon;
+    border-radius: 40px;
+    width: 100%;
+    height: 100%;
+}
+.blackjackHeader {
+    font-family: 'Coffee Tin';
+    font-weight: normal;
+    text-align: center;
+    color: white;
+    font-size: 90px;
+    text-shadow: 0 3px 4px black;
 }
