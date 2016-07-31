@@ -29,8 +29,8 @@ body {
   font-family: 'Coffee Tin';
   font-weight: normal;
   text-align: center;
-  color: white;
+  color: black;
   font-size: 90px;
-  text-shadow: 0 3px 4px black; }
+  text-shadow: 0 3px white; }
 
 /*# sourceMappingURL=style.css.map */

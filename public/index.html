@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-    ng-app="">
+    ng-app="blackjackApp">
 
 <head>
     <meta charset="UTF-8">
@@ -16,9 +16,10 @@
     <script src="javascripts/filters.js"></script>
 </head>
 
-<body>
+<body ng-controller="blackjackController">
     <div class="blackjackTable">
         <h1 class="blackjackHeader">Blackjack</h1>
+        <button ng-click="shuffle(buildDeck())">Test</button>
     </div>
 </body>
 
