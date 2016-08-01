@@ -13,6 +13,9 @@ function blackjackController($scope, cardService) {
 
     $scope.collect = function(rank) {
         var array = [];
+        if (rank === 'A') {
+            return [null];
+        }
         if (typeof rank !== 'number') {
             return array;
         }

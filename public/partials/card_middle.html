@@ -1,18 +1,22 @@
 <!-- Text icons for non-face cards -->
 <!-- need to correct for: 4,5,7,8,9,10 -->
 <div class="suitDisplay"
-    ng-switch="suit">
+    ng-switch="suit"
+    ng-class="{ace: rank === 'A',
+              four: rank === 4,
+              five: rank === 5
+              }">
     <span class="cardMiddleSuit"
-    ng-switch-when="spades"
+        ng-switch-when="spades"
         ng-repeat="suitIcon in collection() track by $index">&spades;</span>
     <span class="cardMiddleSuit red"
-    ng-switch-when="hearts"
+        ng-switch-when="hearts"
         ng-repeat="suitIcon in collection() track by $index">&hearts;</span>
     <span class="cardMiddleSuit"
-    ng-switch-when="clubs"
+        ng-switch-when="clubs"
         ng-repeat="suitIcon in collection() track by $index">&clubs;</span>
     <span class="cardMiddleSuit red"
-    ng-switch-when="diamonds"
+        ng-switch-when="diamonds"
         ng-repeat="suitIcon in collection() track by $index">&diams;</span>
 </div>
 
