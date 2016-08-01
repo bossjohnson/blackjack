@@ -1,21 +1,49 @@
 <!-- Text icons for non-face cards -->
-<!-- need to correct for: 4,5,67,8,9,10 -->
+
+<!-- Ace through 3 -->
 <div class="suitDisplay"
     ng-switch="suit"
     ng-class="{ace: rank === 'A'}"
     ng-if="rank === 'A' || rank < 4">
-    <span class="cardMiddleSuit"
+    <div class="cardMiddleSuit"
         ng-switch-when="spades"
-        ng-repeat="suitIcon in collection() track by $index">&spades;</span>
-    <span class="cardMiddleSuit red"
+        ng-repeat="suitIcon in collection() track by $index">&spades;</div>
+    <div class="cardMiddleSuit red"
         ng-switch-when="hearts"
-        ng-repeat="suitIcon in collection() track by $index">&hearts;</span>
-    <span class="cardMiddleSuit"
+        ng-repeat="suitIcon in collection() track by $index">&hearts;</div>
+    <div class="cardMiddleSuit"
         ng-switch-when="clubs"
-        ng-repeat="suitIcon in collection() track by $index">&clubs;</span>
-    <span class="cardMiddleSuit red"
+        ng-repeat="suitIcon in collection() track by $index">&clubs;</div>
+    <div class="cardMiddleSuit red"
         ng-switch-when="diamonds"
-        ng-repeat="suitIcon in collection() track by $index">&diams;</span>
+        ng-repeat="suitIcon in collection() track by $index">&diams;</div>
+</div>
+
+<!-- Four or six (two rows) -->
+<div class="suitDisplay twoColumns"
+    ng-switch="suit"
+    ng-if="rank === 4 || rank === 6">
+
+<!-- TODO: refactor this to use a directive -->
+    <div class="suitColumn">
+        <div class="cardMiddleSuit"
+            ng-repeat="suitIcon in collection().slice(0, collection().length/2) track by $index">
+            <span ng-switch-when="spades">&spades;</span>
+            <span ng-switch-when="clubs">&clubs;</span>
+            <span ng-switch-when="hearts" class="red">&hearts;</span>
+            <span ng-switch-when="diamonds" class="red">&diams;</span>
+        </div>
+    </div>
+    <div class="suitColumn">
+        <div class="cardMiddleSuit"
+            ng-repeat="suitIcon in collection().slice(collection().length/2, collection().length) track by $index">
+            <span ng-switch-when="spades">&spades;</span>
+            <span ng-switch-when="clubs">&clubs;</span>
+            <span ng-switch-when="hearts" class="red">&hearts;</span>
+            <span ng-switch-when="diamonds" class="red">&diams;</span>
+        </div>
+    </div>
+
 </div>
 
 <!-- Images for face cards -->

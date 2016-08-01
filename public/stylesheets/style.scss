@@ -76,12 +76,21 @@ bj-card {
         .suitDisplay {
             @extend .faceImg;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             flex-direction: column;
             &.ace {
                 justify-content: center;
+            }
+            &.twoColumns {
+                flex-direction: row;
+                .suitColumn {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                }
             }
             .cardMiddleSuit {
                 font-size: 2em;
