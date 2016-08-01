@@ -82,6 +82,12 @@ bj-card {
             &.twoColumns {
                 flex-direction: row;
             }
+            &.threeColumns {
+                flex-direction: row;
+                .suitColumn:nth-of-type(2) {
+                    justify-content: space-around;
+                }
+            }
             .suitColumn {
                 height: 100%;
                 display: flex;

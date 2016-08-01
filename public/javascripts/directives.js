@@ -16,3 +16,10 @@ app.directive('cardMiddle', function() {
         restrict: 'E'
     };
 });
+
+app.directive('suitColumn', function() {
+    return {
+        templateUrl: 'partials/suit_column.html',
+        restrict: 'E'
+    };
+});
