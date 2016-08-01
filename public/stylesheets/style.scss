@@ -45,7 +45,7 @@ bj-card {
     border-radius: 8px;
     background-color: white;
     width: 10vw;
-    height: 15vw;
+    height: 14vw;
     padding: 1%;
     margin: 1%;
     display: inline-block;
@@ -72,6 +72,17 @@ bj-card {
             left: 10%;
             width: 80%;
             height: 90%;
+        }
+        .suitDisplay {
+            @extend .faceImg;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            .cardMiddleSuit {
+                font-size: 2em;
+            }
         }
     }
     .cardBottom {

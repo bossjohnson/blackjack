@@ -40,7 +40,7 @@ bj-card {
   border-radius: 8px;
   background-color: white;
   width: 10vw;
-  height: 15vw;
+  height: 14vw;
   padding: 1%;
   margin: 1%;
   display: inline-block; }
@@ -59,12 +59,20 @@ bj-card {
     left: 1%;
     width: 98%;
     height: 98%; }
-    bj-card card-middle .faceImg {
+    bj-card card-middle .faceImg, bj-card card-middle .suitDisplay {
       position: absolute;
       top: 5%;
       left: 10%;
       width: 80%;
       height: 90%; }
+    bj-card card-middle .suitDisplay {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column; }
+      bj-card card-middle .suitDisplay .cardMiddleSuit {
+        font-size: 2em; }
   bj-card .cardBottom {
     position: absolute;
     bottom: 2%;

@@ -1,3 +1,22 @@
+<!-- Text icons for non-face cards -->
+<!-- need to correct for: 4,5,7,8,9,10 -->
+<div class="suitDisplay"
+    ng-switch="suit">
+    <span class="cardMiddleSuit"
+    ng-switch-when="spades"
+        ng-repeat="suitIcon in collection() track by $index">&spades;</span>
+    <span class="cardMiddleSuit red"
+    ng-switch-when="hearts"
+        ng-repeat="suitIcon in collection() track by $index">&hearts;</span>
+    <span class="cardMiddleSuit"
+    ng-switch-when="clubs"
+        ng-repeat="suitIcon in collection() track by $index">&clubs;</span>
+    <span class="cardMiddleSuit red"
+    ng-switch-when="diamonds"
+        ng-repeat="suitIcon in collection() track by $index">&diams;</span>
+</div>
+
+<!-- Images for face cards -->
 <img class="faceImg"
     src="../images/jack_spades.png"
     alt="Jack"

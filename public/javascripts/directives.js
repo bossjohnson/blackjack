@@ -4,7 +4,8 @@ app.directive('bjCard', function() {
         restrict: 'E',
         scope: {
             rank: '=',
-            suit: '='
+            suit: '=',
+            collection: '&'
         }
     };
 });
