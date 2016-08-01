@@ -83,13 +83,6 @@ bj-card {
             &.ace {
                 justify-content: center;
             }
-            &.four {}
-            &.five {
-                .cardMiddleSuit:nth-of-type(2) {
-                    position: relative;
-                    left: 25%;
-                }
-            }
             .cardMiddleSuit {
                 font-size: 2em;
             }

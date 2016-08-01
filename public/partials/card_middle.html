@@ -1,11 +1,9 @@
 <!-- Text icons for non-face cards -->
-<!-- need to correct for: 4,5,7,8,9,10 -->
+<!-- need to correct for: 4,5,67,8,9,10 -->
 <div class="suitDisplay"
     ng-switch="suit"
-    ng-class="{ace: rank === 'A',
-              four: rank === 4,
-              five: rank === 5
-              }">
+    ng-class="{ace: rank === 'A'}"
+    ng-if="rank === 'A' || rank < 4">
     <span class="cardMiddleSuit"
         ng-switch-when="spades"
         ng-repeat="suitIcon in collection() track by $index">&spades;</span>

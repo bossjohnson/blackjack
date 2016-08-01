@@ -73,9 +73,6 @@ bj-card {
       flex-direction: column; }
       bj-card card-middle .suitDisplay.ace {
         justify-content: center; }
-      bj-card card-middle .suitDisplay.five .cardMiddleSuit:nth-of-type(2) {
-        position: relative;
-        left: 25%; }
       bj-card card-middle .suitDisplay .cardMiddleSuit {
         font-size: 2em; }
   bj-card .cardBottom {
