@@ -4,7 +4,8 @@ app.directive('bjCard', function() {
         restrict: 'E',
         scope: {
             rank: '=',
-            suit: '='
+            suit: '=',
+            collection: '&'
         }
     };
 });
@@ -12,6 +13,13 @@ app.directive('bjCard', function() {
 app.directive('cardMiddle', function() {
     return {
         templateUrl: 'partials/card_middle.html',
+        restrict: 'E'
+    };
+});
+
+app.directive('suitColumn', function() {
+    return {
+        templateUrl: 'partials/suit_column.html',
         restrict: 'E'
     };
 });

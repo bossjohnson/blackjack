@@ -11,5 +11,19 @@ function blackjackController($scope, cardService) {
         $scope.view.deck = deck;
     }
 
+    $scope.collect = function(rank) {
+        var array = [];
+        if (rank === 'A') {
+            return [null];
+        }
+        if (typeof rank !== 'number') {
+            return array;
+        }
+        for (var i = 0; i < rank; i++) {
+            array.push(null);
+        }
+        return array;
+    };
+
 }
 blackjackController.$inject = ['$scope', 'cardService'];
