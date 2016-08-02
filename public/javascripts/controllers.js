@@ -54,7 +54,6 @@ function partialHandValue(hand) {
 }
 
 function sumCards(a, b) {
-    // console.log(cardValue(a), cardValue(b));
     return cardValue(a) + cardValue(b);
 }
 
