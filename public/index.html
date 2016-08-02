@@ -20,13 +20,32 @@
     <section class="blackjackTable">
 
         <h1 class="blackjackHeader">ng-Blackjack</h1>
-        <button ng-click="test()">Test</button>
+
+        <button ng-click="deal()">Deal</button>
         <br>
-        <bj-card ng-repeat="card in view.deck.cards track by $index"
-            rank="card.rank"
-            suit="card.suit"
-            collection="collect(card.rank)">
-        </bj-card>
+
+        <h2 class="dealerScore"
+            ng-show="view.dealerHand.cards">DEALER:&nbsp; <span class="score">{{ view.dealerHand.value }}</span></h2>
+        <div class="cardRow">
+            <bj-card ng-repeat="card in view.dealerHand.cards track by $index"
+                rank="card.rank"
+                suit="card.suit"
+                collection="collect(card.rank)"
+                class="dealer">
+            </bj-card>
+        </div>
+
+        <hr ng-show="view.dealerHand.cards">
+
+        <h2 class="playerScore"
+            ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
+        <div class="cardRow">
+            <bj-card ng-repeat="card in view.playerHand.cards track by $index"
+                rank="card.rank"
+                suit="card.suit"
+                collection="collect(card.rank)">
+            </bj-card>
+        </div>
 
     </section>
 </body>

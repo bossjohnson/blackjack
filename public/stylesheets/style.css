@@ -14,6 +14,20 @@ body {
   height: 100vh;
   background-color: black; }
 
+button {
+  font-size: 1em;
+  padding: 1%;
+  border-radius: 8px;
+  border: 2px solid black;
+  background-color: lightgray; }
+  button:hover {
+    background-color: gray; }
+
+hr {
+  background-color: black;
+  border: 1px solid black;
+  height: 3px; }
+
 .blackjackTable {
   background-image: url("../images/green_felt.jpeg");
   background-color: white;
@@ -34,6 +48,25 @@ body {
   font-size: 90px;
   text-shadow: 0 1px white; }
 
+.dealerScore,
+.playerScore {
+  text-align: center;
+  font-size: 2.5em;
+  margin: 0;
+  color: black;
+  text-shadow: 1px 1px white;
+  font-family: 'Lounge Bait'; }
+  .dealerScore .score,
+  .playerScore .score {
+    color: white;
+    font-family: 'Roboto';
+    font-size: 1.1em;
+    text-shadow: 3px 3px 2px black; }
+
+.cardRow {
+  display: flex;
+  justify-content: center; }
+
 bj-card {
   position: relative;
   border: 2px solid black;
@@ -44,6 +77,11 @@ bj-card {
   padding: 1%;
   margin: 1%;
   display: inline-block; }
+  bj-card.dealer:nth-of-type(n + 2) {
+    background-image: url("../images/card_back.jpeg");
+    background-size: cover; }
+    bj-card.dealer:nth-of-type(n + 2) * {
+      opacity: 0; }
   bj-card .red {
     color: red; }
   bj-card .cardTop {
