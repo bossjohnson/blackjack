@@ -83,6 +83,9 @@ bj-card {
     padding: 1%;
     margin: 1%;
     display: inline-block;
+    // &.ng-enter {
+    //     animation: fadeInDown 1s;
+    // }
     &.dealer:nth-of-type(n + 2) {
         background-image: url("../images/card_back.jpeg");
         background-size: cover;

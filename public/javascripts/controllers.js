@@ -13,7 +13,7 @@ function blackjackController($scope, cardService) {
     $scope.view.deck.shuffle();
 
     $scope.deal = function() {
-        var deck = $scope.view.deck
+        var deck = $scope.view.deck;
 
         // Player's Hand
         $scope.view.playerHand.cards = [deck.cards.pop(), deck.cards.pop()];
@@ -22,7 +22,15 @@ function blackjackController($scope, cardService) {
         // Dealer's Hand
         $scope.view.dealerHand.cards = [deck.cards.pop(), deck.cards.pop()];
         $scope.view.dealerHand.value = partialHandValue($scope.view.dealerHand);
-    }
+    };
+
+    $scope.hit = function() {
+        var deck = $scope.view.deck;
+        $scope.view.playerHand.cards.push(deck.cards.pop());
+        // console.log($scope.view.playerHand);
+        $scope.view.playerHand.value = handValue($scope.view.playerHand);
+        console.log($scope.view.playerHand);
+    };
 
     $scope.collect = function(rank) {
         var array = [];
@@ -46,7 +54,13 @@ blackjackController.$inject = ['$scope', 'cardService'];
 // Helper Functions
 // ================
 function handValue(hand) {
-    return hand.cards.reduce(sumCards);
+    var score = hand.cards.reduce(sumCards);
+    for (var i = 0; i < hand.cards.length; i++) {
+        if (hand.cards[i].rank === 'A' && score > 21) { // correct for aces
+            score -= 10;
+        }
+    }
+    return score;
 }
 
 function partialHandValue(hand) {
@@ -65,5 +79,5 @@ function cardValue(card) {
     } else { // handle aces
         card.value = 11;
     }
-    return card.value;
+    return card.value || card; // with more than two cards, total is passed back in as a number
 }
