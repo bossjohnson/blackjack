@@ -34,6 +34,9 @@ body {
   font-size: 90px;
   text-shadow: 0 1px white; }
 
+.playerScore {
+  text-align: center; }
+
 bj-card {
   position: relative;
   border: 2px solid black;
@@ -98,5 +101,14 @@ bj-card {
     align-items: flex-end; }
     bj-card .cardBottom span {
       transform: rotate(180deg); }
+
+button {
+  font-size: 1em;
+  padding: 1%;
+  border-radius: 8px;
+  border: 2px solid black;
+  background-color: lightgray; }
+  button:hover {
+    background-color: gray; }
 
 /*# sourceMappingURL=style.css.map */

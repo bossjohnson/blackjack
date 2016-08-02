@@ -20,9 +20,10 @@
     <section class="blackjackTable">
 
         <h1 class="blackjackHeader">ng-Blackjack</h1>
-        <button ng-click="test()">Test</button>
+        <h2 class="playerScore">Player has {{ view.playerHand.value }}</h2>
+        <button ng-click="deal()">Deal</button>
         <br>
-        <bj-card ng-repeat="card in view.deck.cards track by $index"
+        <bj-card ng-repeat="card in view.playerHand.cards track by $index"
             rank="card.rank"
             suit="card.suit"
             collection="collect(card.rank)">

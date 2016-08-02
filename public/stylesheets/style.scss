@@ -38,6 +38,9 @@ body {
     font-size: 90px;
     text-shadow: 0 1px white;
 }
+.playerScore {
+  text-align: center;
+}
 // Angular Directives
 bj-card {
     position: relative;
@@ -118,4 +121,14 @@ bj-card {
             transform: rotate(180deg);
         }
     }
+}
+button {
+  font-size: 1em;
+  padding: 1%;
+  border-radius: 8px;
+  border: 2px solid black;
+  background-color: lightgray;
+  &:hover {
+    background-color: gray;
+  }
 }
