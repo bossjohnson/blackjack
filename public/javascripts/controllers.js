@@ -6,15 +6,22 @@ function blackjackController($scope, cardService) {
 
     $scope.view = {
         deck: $scope.buildDeck(),
-        playerHand: {}
+        playerHand: {},
+        dealerHand: {}
     };
 
     $scope.view.deck.shuffle();
 
     $scope.deal = function() {
         var deck = $scope.view.deck
+
+        // Player's Hand
         $scope.view.playerHand.cards = [deck.cards.pop(), deck.cards.pop()];
         $scope.view.playerHand.value = handValue($scope.view.playerHand);
+
+        // Dealer's Hand
+        $scope.view.dealerHand.cards = [deck.cards.pop(), deck.cards.pop()];
+        $scope.view.dealerHand.value = handValue($scope.view.dealerHand);
     }
 
     $scope.collect = function(rank) {
@@ -39,7 +46,6 @@ blackjackController.$inject = ['$scope', 'cardService'];
 // Helper Functions
 // ================
 function handValue(hand) {
-    console.log(hand.cards);
     return hand.cards.reduce(sumCards);
 }
 

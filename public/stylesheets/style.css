@@ -34,7 +34,7 @@ body {
   font-size: 90px;
   text-shadow: 0 1px white; }
 
-.playerScore {
+.playerScore, .dealerScore {
   text-align: center; }
 
 bj-card {
