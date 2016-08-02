@@ -26,7 +26,7 @@ button {
 hr {
   background-color: black;
   border: 1px solid black;
-  height: 5px; }
+  height: 3px; }
 
 .blackjackTable {
   background-image: url("../images/green_felt.jpeg");
@@ -77,6 +77,11 @@ bj-card {
   padding: 1%;
   margin: 1%;
   display: inline-block; }
+  bj-card.dealer:nth-of-type(n + 2) {
+    background-image: url("../images/card_back.jpeg");
+    background-size: cover; }
+    bj-card.dealer:nth-of-type(n + 2) * {
+      opacity: 0; }
   bj-card .red {
     color: red; }
   bj-card .cardTop {

@@ -30,10 +30,13 @@
             <bj-card ng-repeat="card in view.dealerHand.cards track by $index"
                 rank="card.rank"
                 suit="card.suit"
-                collection="collect(card.rank)">
+                collection="collect(card.rank)"
+                class="dealer">
             </bj-card>
         </div>
-<hr ng-show="view.dealerHand.cards">
+
+        <hr ng-show="view.dealerHand.cards">
+
         <h2 class="playerScore"
             ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
         <div class="cardRow">
@@ -43,6 +46,7 @@
                 collection="collect(card.rank)">
             </bj-card>
         </div>
+
     </section>
 </body>
 

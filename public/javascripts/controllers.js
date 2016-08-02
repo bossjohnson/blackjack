@@ -21,7 +21,7 @@ function blackjackController($scope, cardService) {
 
         // Dealer's Hand
         $scope.view.dealerHand.cards = [deck.cards.pop(), deck.cards.pop()];
-        $scope.view.dealerHand.value = handValue($scope.view.dealerHand);
+        $scope.view.dealerHand.value = partialHandValue($scope.view.dealerHand);
     }
 
     $scope.collect = function(rank) {
@@ -49,23 +49,22 @@ function handValue(hand) {
     return hand.cards.reduce(sumCards);
 }
 
+function partialHandValue(hand) {
+    return cardValue(hand.cards[0]);
+}
+
 function sumCards(a, b) {
+    // console.log(cardValue(a), cardValue(b));
+    return cardValue(a) + cardValue(b);
+}
 
-    if (typeof a.rank === 'number') { // handle non-face cards
-        a.value = a.rank;
-    } else if (a.rank === 'J' || a.rank === 'Q' || a.rank === 'K') { // handle face cards
-        a.value = 10;
+function cardValue(card) {
+    if (typeof card.rank === 'number') { // handle non-face cards
+        card.value = card.rank;
+    } else if (card.rank === 'J' || card.rank === 'Q' || card.rank === 'K') { // handle face cards
+        card.value = 10;
     } else { // handle aces
-        a.value = 11;
+        card.value = 11;
     }
-
-    if (typeof b.rank === 'number') { // handle non-face cards
-        b.value = b.rank;
-    } else if (b.rank === 'J' || b.rank === 'Q' || b.rank === 'K') { // handle face cards
-        b.value = 10;
-    } else { // handle aces
-        b.value = 11;
-    }
-
-    return a.value + b.value;
+    return card.value;
 }

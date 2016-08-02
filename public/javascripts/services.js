@@ -32,5 +32,5 @@ function cardService() {
         this.cards = shuffled;
     }
 
-    
+
 }

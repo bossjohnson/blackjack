@@ -29,9 +29,9 @@ button {
     }
 }
 hr {
-  background-color: black;
-  border: 1px solid black;
-  height: 5px;
+    background-color: black;
+    border: 1px solid black;
+    height: 3px;
 }
 .blackjackTable {
     background-image: url("../images/green_felt.jpeg");
@@ -83,6 +83,13 @@ bj-card {
     padding: 1%;
     margin: 1%;
     display: inline-block;
+    &.dealer:nth-of-type(n + 2) {
+        background-image: url("../images/card_back.jpeg");
+        background-size: cover;
+        * {
+            opacity: 0;
+        }
+    }
     .red {
         color: red;
     }
