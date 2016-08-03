@@ -106,17 +106,14 @@ hr {
 .blackjack {
     @extend .bust;
     font-family: 'Showboat';
-    font-weight: lighter;
     font-size: 7em;
     color: goldenrod;
     animation: tada 2s;
 }
 .push {
+  @extend .blackjack;
   font-family: 'Blah';
-  font-weight: lighter;
-  font-size: 8em;
   color: yellow;
-  text-shadow: 0 7px 2px black;
 }
 // Angular Directives
 bj-card {

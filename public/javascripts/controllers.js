@@ -12,7 +12,8 @@ function blackjackController($scope, cardService) {
         dealerHand: {},
         dealerBust: false,
         dealerBlackjack: false,
-        showDealerHand: false
+        showDealerHand: false,
+        push: false
     };
 
     $scope.view.deck.shuffle();
@@ -22,6 +23,7 @@ function blackjackController($scope, cardService) {
         $scope.view.dealerBust = false;
         $scope.view.showDealerHand = false;
         $scope.view.disableControls = false;
+        $scope.view.push = false;
 
         var deck = $scope.view.deck;
 
@@ -31,11 +33,17 @@ function blackjackController($scope, cardService) {
         $scope.view.playerHand.value = handValue($scope.view.playerHand);
         if ($scope.view.playerHand.value === 21) {
             $scope.view.playerBlackjack = true;
+            console.log('player wins!');
         }
 
         // Dealer's Hand
+        $scope.view.dealerBlackjack = false;
         $scope.view.dealerHand.cards = [deck.cards.pop(), deck.cards.pop()];
         $scope.view.dealerHand.value = partialHandValue($scope.view.dealerHand);
+        if ($scope.view.dealerHand.value === 21 && !$scope.view.playerBlackjack) {
+            $scope.view.dealerBlackjack = true;
+            console.log('dealer wins!');
+        }
     };
 
     $scope.hit = function() {
@@ -54,6 +62,7 @@ function blackjackController($scope, cardService) {
         $scope.view.disableControls = true;
         $scope.view.showDealerHand = true;
         dealerHand.value = handValue(dealerHand);
+
         // dealer must hit soft 17
         while (dealerHand.value <= 17) {
             dealerHand.cards.push(deck.cards.pop());
@@ -63,6 +72,7 @@ function blackjackController($scope, cardService) {
                 break;
             }
         }
+
         var winner = checkForWinner();
         console.log(winner, 'wins!');
     };
@@ -76,6 +86,7 @@ function blackjackController($scope, cardService) {
             return 'player';
         }
         if ($scope.view.playerHand.value === $scope.view.dealerHand.value) {
+            $scope.view.push = true;
             return 'push';
         }
         if ($scope.view.playerHand.value > $scope.view.dealerHand.value) {

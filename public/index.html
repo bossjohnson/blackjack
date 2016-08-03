@@ -42,10 +42,12 @@
             </bj-card>
             <h1 class="bust"
                 ng-show="view.dealerBust">BUST</h1>
+            <h1 class="blackjack"
+                ng-show="view.dealerBlackjack">Blackjack!</h1>
         </div>
 
         <hr ng-show="view.dealerHand.cards">
-        <!-- <h1 class="push">Push</h1> -->
+        <h1 class="push" ng-show="view.push">Push</h1>
 
         <h2 class="playerScore"
             ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
