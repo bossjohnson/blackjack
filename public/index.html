@@ -7,7 +7,8 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
     <link rel="stylesheet"
         href="stylesheets/style.css">
@@ -24,7 +25,8 @@
         <h1 class="blackjackHeader">ng-Blackjack</h1>
 
         <button ng-click="deal()">Deal</button>
-        <button ng-click="hit()">Hit!</button>
+        <button ng-click="hit()"
+            ng-disabled="view.playerBust || !view.playerHand.cards">Hit!</button>
 
         <br>
 
@@ -49,6 +51,10 @@
                 suit="card.suit"
                 collection="collect(card.rank)">
             </bj-card>
+            <h1 class="bust"
+                ng-show="view.playerBust">BUST</h1>
+            <h1 class="blackjack"
+                ng-show="view.playerBlackjack">Blackjack!</h1>
         </div>
 
     </section>

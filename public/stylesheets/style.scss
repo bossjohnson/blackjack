@@ -7,6 +7,18 @@
     font-family: 'Lounge Bait';
     src: url("../fonts/LOUNB___.TTF");
 }
+@font-face {
+    font-family: 'All Cracked Out';
+    src: url("../fonts/AllCrackedOut.ttf");
+}
+@font-face {
+    font-family: 'Cash Currency';
+    src: url("../fonts/Cash%20Currency.ttf");
+}
+@font-face {
+    font-family: 'Showboat';
+    src: url("../fonts/SHOWBOA_.ttf");
+}
 // General Styling
 * {
     box-sizing: border-box;
@@ -23,9 +35,9 @@ button {
     padding: 1%;
     border-radius: 8px;
     border: 2px solid black;
-    background-color: lightgray;
+    background-color: gainsboro;
     &:hover {
-        background-color: gray;
+        background-color: silver;
     }
 }
 hr {
@@ -71,6 +83,26 @@ hr {
 .cardRow {
     display: flex;
     justify-content: center;
+}
+.bust {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    font-size: 8em;
+    font-weight: lighter;
+    color: red;
+    text-shadow: 0 7px 2px black;
+    font-family: 'All Cracked Out';
+    animation: rubberBand 1s;
+}
+.blackjack {
+    @extend .bust;
+    font-family: 'Showboat';
+    font-weight: lighter;
+    font-size: 7em;
+    color: goldenrod;
+    animation: tada 2s;
 }
 // Angular Directives
 bj-card {

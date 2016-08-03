@@ -7,17 +7,26 @@ function blackjackController($scope, cardService) {
     $scope.view = {
         deck: $scope.buildDeck(),
         playerHand: {},
-        dealerHand: {}
+        playerBust: false,
+        playerBlackjack: false,
+        dealerHand: {},
+        dealerBust: false,
+        dealerBlackjack: false
     };
 
     $scope.view.deck.shuffle();
 
     $scope.deal = function() {
+        $scope.view.playerBust = false;
+        $scope.view.dealerBust = false;
         var deck = $scope.view.deck;
 
         // Player's Hand
         $scope.view.playerHand.cards = [deck.cards.pop(), deck.cards.pop()];
         $scope.view.playerHand.value = handValue($scope.view.playerHand);
+        if ($scope.view.playerHand.value === 21) {
+          $scope.view.playerBlackjack = true;
+        }
 
         // Dealer's Hand
         $scope.view.dealerHand.cards = [deck.cards.pop(), deck.cards.pop()];
@@ -27,9 +36,10 @@ function blackjackController($scope, cardService) {
     $scope.hit = function() {
         var deck = $scope.view.deck;
         $scope.view.playerHand.cards.push(deck.cards.pop());
-        // console.log($scope.view.playerHand);
         $scope.view.playerHand.value = handValue($scope.view.playerHand);
-        console.log($scope.view.playerHand);
+        if ($scope.view.playerHand.value > 21) {
+            $scope.view.playerBust = true;
+        }
     };
 
     $scope.collect = function(rank) {
