@@ -66,8 +66,14 @@ hr {
     font-weight: normal;
     text-align: center;
     color: black;
-    font-size: 90px;
+    font-size: 60px;
     text-shadow: 0 1px white;
+    position: absolute;
+    top: 2%;
+    width: 100%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    z-index: 0;
 }
 .dealerScore,
 .playerScore {
@@ -111,9 +117,103 @@ hr {
     animation: tada 2s;
 }
 .push {
-  @extend .blackjack;
-  font-family: 'Blah';
-  color: yellow;
+    @extend .blackjack;
+    font-family: 'Blah';
+    color: yellow;
+}
+.playerCash {
+    font-family: 'Cash Currency';
+    font-weight: normal;
+    font-size: 3em;
+    color: palegreen;
+    display: inline-block;
+    padding-top: 2%;
+    padding-left: 2%;
+    text-shadow: 0 7px 2px black;
+    z-index: 1;
+    margin: 0;
+}
+.betDiv {
+    border: 5px double white;
+    border-radius: 10px;
+    background-color: white;
+    background-image: url("../images/cashpile.jpg");
+    background-size: cover;
+    background-position: bottom;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    height: 40%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 5%;
+    &.ng-hide-remove {
+        animation: bounceInDown 1s;
+    }
+    &.ng-hide-add {
+        animation: bounceOutUp 1s;
+    }
+    .betLabel {
+        font-size: 3em;
+        text-align: center;
+        margin: 0;
+        color: black;
+        border-radius: 10px;
+        background-color: rgba(253, 245, 230, .5);
+        padding: 1%;
+        text-shadow: 0 2px 2px white;
+    }
+    .bet {
+        @extend .betLabel;
+        background-color: white;
+        text-shadow: none;
+        width: 25%;
+        padding: 0;
+    }
+    .makeBet {
+        @extend .betLabel;
+        background-color: gainsboro;
+        text-shadow: none;
+        &:hover {
+            background-color: silver;
+        }
+    }
+}
+.endOfRound {
+  border: 5px solid black;
+  border-radius: 10px;
+  background-color: gainsboro;
+  font-family: 'Lounge Bait';
+  position: absolute;
+  z-index: 1;
+  top: 45%;
+  left: 5%;
+  height: 10%;
+  width: 90%;
+  font-size: 5em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 3px rgba(0, 0, 0, .5);
+  &.ng-hide-remove {
+    animation: zoomIn 1s;
+  }
+  &.ng-hide-add {
+    animation: zoomOut 1s;
+  }
+  &.dealerWins {
+
+  }
+  &.playerWins {
+
+  }
+}
+.hidden {
+    opacity: 0;
 }
 // Angular Directives
 bj-card {

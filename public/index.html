@@ -22,9 +22,29 @@
 <body ng-controller="blackjackController">
     <section class="blackjackTable">
 
+        <h2 class="playerCash">${{ view.playerCash }}</h2>
         <h1 class="blackjackHeader">ng-Blackjack</h1>
+        <br>
 
-        <button ng-click="deal()">Deal</button>
+        <div class="betDiv"
+            ng-show="view.bettingPhase">
+            <label for="bet"
+                class="betLabel">Place your bet!</label>
+            <input id="bet"
+                type="number"
+                name="bet"
+                class="bet"
+                ng-model="view.playerBet">
+            <button class="makeBet"
+                ng-class="{hidden: !view.playerBet}"
+                ng-click="deal()">Bet ${{ view.playerBet }}!</button>
+        </div>
+        <div class="endOfRound"
+            ng-show="view.winner">
+            <span>{{ view.winner }} wins!</span>
+        </div>
+
+        <!-- Controls -->
         <button ng-click="hit()"
             ng-disabled="view.playerBust || !view.playerHand.cards || view.playerBlackjack || view.disableControls">Hit!</button>
         <button ng-click="stand()"
@@ -47,7 +67,8 @@
         </div>
 
         <hr ng-show="view.dealerHand.cards">
-        <h1 class="push" ng-show="view.push">Push</h1>
+        <h1 class="push"
+            ng-show="view.push">Push</h1>
 
         <h2 class="playerScore"
             ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
