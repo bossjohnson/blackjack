@@ -26,8 +26,9 @@
 
         <button ng-click="deal()">Deal</button>
         <button ng-click="hit()"
-            ng-disabled="view.playerBust || !view.playerHand.cards">Hit!</button>
-
+            ng-disabled="view.playerBust || !view.playerHand.cards || view.playerBlackjack || view.disableControls">Hit!</button>
+        <button ng-click="stand()"
+            ng-disabled="view.playerBust || !view.playerHand.cards || view.playerBlackjack || view.disableControls">Stand</button>
         <br>
 
         <h2 class="dealerScore"
@@ -37,11 +38,14 @@
                 rank="card.rank"
                 suit="card.suit"
                 collection="collect(card.rank)"
-                class="dealer">
+                ng-class="{dealer: !view.showDealerHand}">
             </bj-card>
+            <h1 class="bust"
+                ng-show="view.dealerBust">BUST</h1>
         </div>
 
         <hr ng-show="view.dealerHand.cards">
+        <!-- <h1 class="push">Push</h1> -->
 
         <h2 class="playerScore"
             ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>

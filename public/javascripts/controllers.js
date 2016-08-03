@@ -11,7 +11,8 @@ function blackjackController($scope, cardService) {
         playerBlackjack: false,
         dealerHand: {},
         dealerBust: false,
-        dealerBlackjack: false
+        dealerBlackjack: false,
+        showDealerHand: false
     };
 
     $scope.view.deck.shuffle();
@@ -19,13 +20,17 @@ function blackjackController($scope, cardService) {
     $scope.deal = function() {
         $scope.view.playerBust = false;
         $scope.view.dealerBust = false;
+        $scope.view.showDealerHand = false;
+        $scope.view.disableControls = false;
+
         var deck = $scope.view.deck;
 
         // Player's Hand
+        $scope.view.playerBlackjack = false;
         $scope.view.playerHand.cards = [deck.cards.pop(), deck.cards.pop()];
         $scope.view.playerHand.value = handValue($scope.view.playerHand);
         if ($scope.view.playerHand.value === 21) {
-          $scope.view.playerBlackjack = true;
+            $scope.view.playerBlackjack = true;
         }
 
         // Dealer's Hand
@@ -35,12 +40,50 @@ function blackjackController($scope, cardService) {
 
     $scope.hit = function() {
         var deck = $scope.view.deck;
+        $scope.view.playerBust = false;
         $scope.view.playerHand.cards.push(deck.cards.pop());
         $scope.view.playerHand.value = handValue($scope.view.playerHand);
         if ($scope.view.playerHand.value > 21) {
             $scope.view.playerBust = true;
         }
     };
+
+    $scope.stand = function() {
+        var deck = $scope.view.deck;
+        var dealerHand = $scope.view.dealerHand;
+        $scope.view.disableControls = true;
+        $scope.view.showDealerHand = true;
+        dealerHand.value = handValue(dealerHand);
+        // dealer must hit soft 17
+        while (dealerHand.value <= 17) {
+            dealerHand.cards.push(deck.cards.pop());
+            dealerHand.value = handValue(dealerHand);
+            if (dealerHand.value > 21) {
+                $scope.view.dealerBust = true;
+                break;
+            }
+        }
+        var winner = checkForWinner();
+        console.log(winner, 'wins!');
+    };
+
+    function checkForWinner() {
+        // console.log('the winner is...');
+        if ($scope.view.playerBust) {
+            return 'dealer';
+        }
+        if ($scope.view.dealerBust) {
+            return 'player';
+        }
+        if ($scope.view.playerHand.value === $scope.view.dealerHand.value) {
+            return 'push';
+        }
+        if ($scope.view.playerHand.value > $scope.view.dealerHand.value) {
+            return 'player';
+        }
+        return 'dealer';
+
+    }
 
     $scope.collect = function(rank) {
         var array = [];

@@ -19,6 +19,10 @@
     font-family: 'Showboat';
     src: url("../fonts/SHOWBOA_.ttf");
 }
+@font-face {
+    font-family: 'Blah';
+    src: url("../fonts/blah.ttf");
+}
 // General Styling
 * {
     box-sizing: border-box;
@@ -75,7 +79,7 @@ hr {
     font-family: 'Lounge Bait';
     .score {
         color: white;
-        font-family: 'Roboto';
+        font-family: 'Roboto', sans-serif;
         font-size: 1.1em;
         text-shadow: 3px 3px 2px black;
     }
@@ -95,6 +99,9 @@ hr {
     text-shadow: 0 7px 2px black;
     font-family: 'All Cracked Out';
     animation: rubberBand 1s;
+    &.ng-hide-add {
+        animation: fadeOut 0.8s;
+    }
 }
 .blackjack {
     @extend .bust;
@@ -103,6 +110,13 @@ hr {
     font-size: 7em;
     color: goldenrod;
     animation: tada 2s;
+}
+.push {
+  font-family: 'Blah';
+  font-weight: lighter;
+  font-size: 8em;
+  color: yellow;
+  text-shadow: 0 7px 2px black;
 }
 // Angular Directives
 bj-card {
@@ -115,9 +129,6 @@ bj-card {
     padding: 1%;
     margin: 1%;
     display: inline-block;
-    // &.ng-enter {
-    //     animation: fadeInDown 1s;
-    // }
     &.dealer:nth-of-type(n + 2) {
         background-image: url("../images/card_back.jpeg");
         background-size: cover;

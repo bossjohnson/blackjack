@@ -13,6 +13,9 @@
 @font-face {
   font-family: 'Showboat';
   src: url("../fonts/SHOWBOA_.ttf"); }
+@font-face {
+  font-family: 'Blah';
+  src: url("../fonts/blah.ttf"); }
 * {
   box-sizing: border-box;
   margin: 0;
@@ -68,7 +71,7 @@ hr {
   .dealerScore .score,
   .playerScore .score {
     color: white;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
     text-shadow: 3px 3px 2px black; }
 
@@ -87,6 +90,8 @@ hr {
   text-shadow: 0 7px 2px black;
   font-family: 'All Cracked Out';
   animation: rubberBand 1s; }
+  .bust.ng-hide-add, .ng-hide-add.blackjack {
+    animation: fadeOut 0.8s; }
 
 .blackjack {
   font-family: 'Showboat';
@@ -94,6 +99,13 @@ hr {
   font-size: 7em;
   color: goldenrod;
   animation: tada 2s; }
+
+.push {
+  font-family: 'Blah';
+  font-weight: lighter;
+  font-size: 8em;
+  color: yellow;
+  text-shadow: 0 7px 2px black; }
 
 bj-card {
   position: relative;
