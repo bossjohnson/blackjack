@@ -145,6 +145,15 @@ hr {
     @extend .blackjack;
     font-family: 'Blah';
     color: yellow;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    top: 40vh;
+    left: 0;
+    width: 100%;
+    &.ng-hide-remove {
+        animation: lightSpeedIn 1s;
+    }
 }
 .controlDiv {
     border: 5px solid black;

@@ -51,8 +51,12 @@
         <div class="endOfRound"
             ng-show="view.winner">
             <span>{{ view.winner | capitalize }} wins!</span>
-            <span class="playAgain" ng-click="bet()">Play again?</span>
+            <span class="playAgain"
+                ng-click="bet()">Play again?</span>
         </div>
+        
+        <h1 class="push"
+        ng-show="view.push">Push</h1>
 
         <div class="dealerArea">
 
@@ -73,10 +77,8 @@
 
         </div>
 
-        <div class="playerArea">
 
-            <h1 class="push"
-                ng-show="view.push">Push</h1>
+        <div class="playerArea">
 
             <h2 class="playerScore"
                 ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>

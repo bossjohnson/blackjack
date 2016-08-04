@@ -5,7 +5,6 @@ function blackjackController($scope, cardService, $timeout) {
     $scope.buildDeck = cardService.buildDeck;
 
     $scope.view = {
-        deck: $scope.buildDeck(),
         playerHand: {},
         playerBust: false,
         playerBlackjack: false,
@@ -19,7 +18,6 @@ function blackjackController($scope, cardService, $timeout) {
         winner: null
     };
 
-    $scope.view.deck.shuffle();
 
     $scope.bet = function() {
         $scope.view.bettingPhase = true;
@@ -36,11 +34,14 @@ function blackjackController($scope, cardService, $timeout) {
     }
 
     $scope.deal = function() {
+        $scope.view.deck = $scope.buildDeck();
+        $scope.view.deck.shuffle();
         $scope.view.bettingPhase = false;
         $scope.view.playerCash -= $scope.view.playerBet;
 
         $timeout(function() {
             var deck = $scope.view.deck;
+            deck.shuffle();
 
             // Player's Hand
             $scope.view.playerHand.cards = [deck.cards.pop(), deck.cards.pop()];
@@ -48,6 +49,7 @@ function blackjackController($scope, cardService, $timeout) {
             if ($scope.view.playerHand.value === 21) {
                 $scope.view.playerBlackjack = true;
                 $scope.view.winner = checkForWinner();
+                $scope.view.playerCash += $scope.view.playerBet * 2.5;
             }
 
             // Dealer's Hand
@@ -89,16 +91,26 @@ function blackjackController($scope, cardService, $timeout) {
         }
 
         $scope.view.winner = checkForWinner();
-        if ($scope.view.winner = 'player') {
+        if ($scope.view.winner === 'player') {
             $scope.view.playerCash += $scope.view.playerBet * 2;
         }
-    };
+    }
+    if ($scope.view.winner === 'push') {
+        $scope.view.playerCash += $scope.view.playerBet;
+    }
+
 
     function checkForWinner() {
         if ($scope.view.playerBust) {
             return 'dealer';
         }
         if ($scope.view.dealerBust) {
+            return 'player';
+        }
+        if ($scope.view.dealerBlackjack) {
+            return 'dealer';
+        }
+        if ($scope.view.playerBlackjack) {
             return 'player';
         }
         if ($scope.view.playerHand.value === $scope.view.dealerHand.value) {
@@ -108,8 +120,10 @@ function blackjackController($scope, cardService, $timeout) {
         if ($scope.view.playerHand.value > $scope.view.dealerHand.value) {
             return 'player';
         }
-        return 'dealer';
-
+        if ($scope.view.dealerHand.value > $scope.view.playerHand.value) {
+            return 'dealer';
+        }
+        return 'WTF'
     }
 
     $scope.collect = function(rank) {
@@ -125,7 +139,6 @@ function blackjackController($scope, cardService, $timeout) {
         }
         return array;
     };
-
 
 }
 blackjackController.$inject = ['$scope', 'cardService', '$timeout'];
