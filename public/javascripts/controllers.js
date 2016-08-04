@@ -48,7 +48,6 @@ function blackjackController($scope, cardService, $timeout) {
             if ($scope.view.playerHand.value === 21) {
                 $scope.view.playerBlackjack = true;
                 $scope.view.winner = checkForWinner();
-                console.log('player wins!');
             }
 
             // Dealer's Hand
@@ -57,7 +56,6 @@ function blackjackController($scope, cardService, $timeout) {
             if ($scope.view.dealerHand.value === 21 && !$scope.view.playerBlackjack) {
                 $scope.view.dealerBlackjack = true;
                 $scope.view.winner = checkForWinner();
-                console.log('dealer wins!');
             }
         }, 1000);
     };
@@ -90,13 +88,13 @@ function blackjackController($scope, cardService, $timeout) {
             }
         }
 
-        var winner = checkForWinner();
-        console.log(winner, 'wins!');
         $scope.view.winner = checkForWinner();
+        if ($scope.view.winner = 'player') {
+            $scope.view.playerCash += $scope.view.playerBet * 2;
+        }
     };
 
     function checkForWinner() {
-        // console.log('the winner is...');
         if ($scope.view.playerBust) {
             return 'dealer';
         }
