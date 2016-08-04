@@ -21,33 +21,42 @@ function blackjackController($scope, cardService, $timeout) {
 
     $scope.view.deck.shuffle();
 
+    $scope.bet = function() {
+        $scope.view.bettingPhase = true;
+        $scope.view.winner = null;
+        $scope.view.playerBust = false;
+        $scope.view.dealerBust = false;
+        $scope.view.showDealerHand = false;
+        $scope.view.disableControls = false;
+        $scope.view.push = false;
+        $scope.view.playerHand = {};
+        $scope.view.dealerHand = {};
+        $scope.view.playerBlackjack = false;
+        $scope.view.dealerBlackjack = false;
+    }
+
     $scope.deal = function() {
         $scope.view.bettingPhase = false;
+        $scope.view.playerCash -= $scope.view.playerBet;
 
         $timeout(function() {
-            $scope.view.playerBust = false;
-            $scope.view.dealerBust = false;
-            $scope.view.showDealerHand = false;
-            $scope.view.disableControls = false;
-            $scope.view.push = false;
-            $scope.view.playerCash -= $scope.view.playerBet;
             var deck = $scope.view.deck;
 
             // Player's Hand
-            $scope.view.playerBlackjack = false;
             $scope.view.playerHand.cards = [deck.cards.pop(), deck.cards.pop()];
             $scope.view.playerHand.value = handValue($scope.view.playerHand);
             if ($scope.view.playerHand.value === 21) {
                 $scope.view.playerBlackjack = true;
+                $scope.view.winner = checkForWinner();
                 console.log('player wins!');
             }
 
             // Dealer's Hand
-            $scope.view.dealerBlackjack = false;
             $scope.view.dealerHand.cards = [deck.cards.pop(), deck.cards.pop()];
             $scope.view.dealerHand.value = partialHandValue($scope.view.dealerHand);
             if ($scope.view.dealerHand.value === 21 && !$scope.view.playerBlackjack) {
                 $scope.view.dealerBlackjack = true;
+                $scope.view.winner = checkForWinner();
                 console.log('dealer wins!');
             }
         }, 1000);

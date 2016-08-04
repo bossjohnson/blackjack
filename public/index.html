@@ -42,14 +42,16 @@
                 type="number"
                 name="bet"
                 class="bet"
-                ng-model="view.playerBet">
+                ng-model="view.playerBet"
+                autofocus>
             <button class="makeBet"
                 ng-class="{hidden: !view.playerBet}"
                 ng-click="deal()">Bet ${{ view.playerBet }}!</button>
         </div>
         <div class="endOfRound"
             ng-show="view.winner">
-            <span>{{ view.winner }} wins!</span>
+            <span>{{ view.winner | capitalize }} wins!</span>
+            <span class="playAgain" ng-click="bet()">Play again?</span>
         </div>
 
         <div class="dealerArea">
@@ -73,7 +75,6 @@
 
         <div class="playerArea">
 
-            <hr ng-show="view.dealerHand.cards">
             <h1 class="push"
                 ng-show="view.push">Push</h1>
 
