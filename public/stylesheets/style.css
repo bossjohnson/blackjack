@@ -33,7 +33,8 @@ button {
   border: 2px solid black;
   background-color: gainsboro; }
   button:hover {
-    background-color: silver; }
+    background-color: silver;
+    cursor: pointer; }
 
 hr {
   background-color: black;
@@ -81,14 +82,35 @@ hr {
     font-size: 1.1em;
     text-shadow: 3px 3px 2px black; }
 
+.dealerArea,
+.playerArea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0; }
+
+.dealerArea {
+  bottom: 60vh; }
+
+.playerArea {
+  top: 60vh; }
+
 .cardRow {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center; }
 
 .bust, .blackjack, .push {
   text-align: center;
   position: absolute;
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 0;
   font-size: 8em;
   font-weight: lighter;
@@ -109,17 +131,32 @@ hr {
   font-family: 'Blah';
   color: yellow; }
 
-.playerCash {
-  font-family: 'Cash Currency';
-  font-weight: normal;
-  font-size: 3em;
-  color: palegreen;
-  display: inline-block;
-  padding-top: 2%;
-  padding-left: 2%;
-  text-shadow: 0 7px 2px black;
-  z-index: 1;
-  margin: 0; }
+.controlDiv {
+  border: 5px solid black;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  width: 15vw;
+  z-index: 1; }
+  .controlDiv .playerCash {
+    font-family: 'Cash Currency';
+    font-weight: normal;
+    font-size: 3em;
+    color: palegreen;
+    text-shadow: 0 7px 2px black;
+    z-index: 1;
+    margin: 0; }
+  .controlDiv .buttonRow {
+    display: flex;
+    justify-content: space-around; }
+    .controlDiv .buttonRow button {
+      padding: 5%;
+      flex-grow: 1; }
 
 .betDiv {
   border: 5px double white;
@@ -165,14 +202,14 @@ hr {
 .endOfRound {
   border: 5px solid black;
   border-radius: 10px;
-  background-color: gainsboro;
+  background-color: rgba(220, 220, 220, 0.5);
   font-family: 'Lounge Bait';
   position: absolute;
   z-index: 1;
-  top: 45%;
-  left: 5%;
-  height: 10%;
-  width: 90%;
+  top: 40%;
+  left: 15%;
+  height: 20%;
+  width: 70%;
   font-size: 5em;
   text-align: center;
   display: flex;
