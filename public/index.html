@@ -59,17 +59,11 @@
         </div>
 
         <div class="endOfRound"
-            ng-show="view.winner && view.winner !== 'push'">
-            <span>{{ view.winner | capitalize }} wins!</span>
+            ng-show="view.winner">
+            <span ng-show="view.winner !== 'push'">{{ view.winner | capitalize }} wins!</span>
+            <span ng-show="view.winner === 'push'">Push!</span>
             <span class="playAgain"
                 ng-click="bet()">Play again?</span>
-        </div>
-
-        <div class="push"
-            ng-show="view.push">Push
-            <span class="playAgain"
-                ng-click="bet()">Play again?
-            </span>
         </div>
 
         <div class="dealerArea">

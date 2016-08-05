@@ -106,7 +106,7 @@ hr {
   justify-content: center;
   align-items: center; }
 
-.bust, .blackjack, .push {
+.bust, .blackjack {
   text-align: center;
   position: absolute;
   width: 100%;
@@ -121,32 +121,16 @@ hr {
   text-shadow: 0 7px 2px black;
   font-family: 'All Cracked Out';
   animation: rubberBand 1s; }
-  .bust.ng-hide-add, .ng-hide-add.blackjack, .ng-hide-add.push {
+  .bust.ng-hide-add, .ng-hide-add.blackjack {
     animation: zoomOut 1s; }
 
-.blackjack, .push {
+.blackjack {
   font-family: 'Showboat';
   font-size: 7em;
   color: goldenrod;
   animation: tada 2s; }
-  .blackjack.ng-hide-add, .ng-hide-add.push {
+  .blackjack.ng-hide-add {
     animation: zoomOut 1s; }
-
-.push {
-  font-family: 'Blah';
-  border: 2px dotted gray;
-  color: yellow;
-  position: absolute;
-  text-align: center;
-  z-index: 1;
-  top: 50vh;
-  left: 0;
-  width: 100%;
-  height: 0;
-  overflow-y: visible;
-  animation: none; }
-  .push.ng-hide-remove {
-    animation: lightSpeedIn 1s; }
 
 .controlDiv {
   border: 5px solid black;
@@ -252,6 +236,8 @@ hr {
   position: relative; }
   .gameOver span {
     z-index: 1; }
+  .gameOver img {
+    animation: pulse 1s infinite; }
 
 .hidden {
   visibility: hidden; }
@@ -266,6 +252,8 @@ bj-card {
   padding: 1%;
   margin: 1%;
   display: inline-block; }
+  bj-card.ng-enter {
+    animation: fadeInDown 1s; }
   bj-card.ng-leave {
     animation: zoomOut 1s; }
   bj-card.dealer:nth-of-type(n + 2) {
