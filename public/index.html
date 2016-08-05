@@ -22,45 +22,92 @@
 <body ng-controller="blackjackController">
     <section class="blackjackTable">
 
-        <h1 class="blackjackHeader">ng-Blackjack</h1>
-
-        <button ng-click="deal()">Deal</button>
-        <button ng-click="hit()"
-            ng-disabled="view.playerBust || !view.playerHand.cards || view.playerBlackjack || view.disableControls">Hit!</button>
-        <button ng-click="stand()"
-            ng-disabled="view.playerBust || !view.playerHand.cards || view.playerBlackjack || view.disableControls">Stand</button>
-        <br>
-
-        <h2 class="dealerScore"
-            ng-show="view.dealerHand.cards">DEALER:&nbsp; <span class="score">{{ view.dealerHand.value }}</span></h2>
-        <div class="cardRow">
-            <bj-card ng-repeat="card in view.dealerHand.cards track by $index"
-                rank="card.rank"
-                suit="card.suit"
-                collection="collect(card.rank)"
-                ng-class="{dealer: !view.showDealerHand}">
-            </bj-card>
-            <h1 class="bust"
-                ng-show="view.dealerBust">BUST</h1>
-            <h1 class="blackjack"
-                ng-show="view.dealerBlackjack">Blackjack!</h1>
+        <div class="controlDiv">
+            <h2 class="playerCash">${{ view.playerCash }}</h2>
+            <div class="buttonRow">
+                <button ng-click="hit()"
+                    ng-disabled="view.playerBust || !view.playerHand.cards || view.playerBlackjack || view.disableControls">Hit!</button>
+                <button ng-click="stand()"
+                    ng-disabled="view.playerBust || !view.playerHand.cards || view.playerBlackjack || view.disableControls">Stand</button>
+            </div>
         </div>
 
-        <hr ng-show="view.dealerHand.cards">
-        <h1 class="push" ng-show="view.push">Push</h1>
+        <h1 class="blackjackHeader">ng-Blackjack</h1>
 
-        <h2 class="playerScore"
-            ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
-        <div class="cardRow">
-            <bj-card ng-repeat="card in view.playerHand.cards track by $index"
-                rank="card.rank"
-                suit="card.suit"
-                collection="collect(card.rank)">
-            </bj-card>
-            <h1 class="bust"
-                ng-show="view.playerBust">BUST</h1>
-            <h1 class="blackjack"
-                ng-show="view.playerBlackjack">Blackjack!</h1>
+        <div class="betDiv"
+            ng-show="view.bettingPhase && view.playerCash > 0">
+            <label for="bet"
+                class="betLabel">Place your bet!</label>
+            <input id="bet"
+                type="number"
+                name="bet"
+                class="bet"
+                ng-model="view.playerBet"
+                autofocus
+                min="5"
+                max="{{ view.playerCash }}">
+            <button class="makeBet"
+                ng-class="{hidden: !view.playerBet}"
+                ng-click="deal()">Bet ${{ view.playerBet }}!</button>
+        </div>
+
+        <div class="gameOver"
+            ng-show="view.playerCash === 0 && view.bettingPhase">
+            <span>Game Over</span>
+            <img src="images/no_money.png"
+                alt="No money">
+        </div>
+
+        <div class="endOfRound"
+            ng-show="view.winner && view.winner !== 'push'">
+            <span>{{ view.winner | capitalize }} wins!</span>
+            <span class="playAgain"
+                ng-click="bet()">Play again?</span>
+        </div>
+
+        <div class="push"
+            ng-show="view.push">Push
+            <span class="playAgain"
+                ng-click="bet()">Play again?
+            </span>
+        </div>
+
+        <div class="dealerArea">
+
+            <h2 class="dealerScore"
+                ng-show="view.dealerHand.cards">DEALER:&nbsp; <span class="score">{{ view.dealerHand.value }}</span></h2>
+            <div class="cardRow">
+                <bj-card ng-repeat="card in view.dealerHand.cards track by $index"
+                    rank="card.rank"
+                    suit="card.suit"
+                    collection="collect(card.rank)"
+                    ng-class="{dealer: !view.showDealerHand}">
+                </bj-card>
+                <h1 class="bust"
+                    ng-show="view.dealerBust">BUST</h1>
+                <h1 class="blackjack"
+                    ng-show="view.dealerBlackjack">Blackjack!</h1>
+            </div>
+
+        </div>
+
+
+        <div class="playerArea">
+
+            <h2 class="playerScore"
+                ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
+            <div class="cardRow">
+                <bj-card ng-repeat="card in view.playerHand.cards track by $index"
+                    rank="card.rank"
+                    suit="card.suit"
+                    collection="collect(card.rank)">
+                </bj-card>
+                <h1 class="bust"
+                    ng-show="view.playerBust">BUST</h1>
+                <h1 class="blackjack"
+                    ng-show="view.playerBlackjack">Blackjack!</h1>
+            </div>
+
         </div>
 
     </section>

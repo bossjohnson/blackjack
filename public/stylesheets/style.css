@@ -16,6 +16,9 @@
 @font-face {
   font-family: 'Blah';
   src: url("../fonts/blah.ttf"); }
+@font-face {
+  font-family: 'Press Start';
+  src: url("../fonts/PressStart2P.ttf"); }
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,7 +36,8 @@ button {
   border: 2px solid black;
   background-color: gainsboro; }
   button:hover {
-    background-color: silver; }
+    background-color: silver;
+    cursor: pointer; }
 
 hr {
   background-color: black;
@@ -57,8 +61,14 @@ hr {
   font-weight: normal;
   text-align: center;
   color: black;
-  font-size: 90px;
-  text-shadow: 0 1px white; }
+  font-size: 60px;
+  text-shadow: 0 1px white;
+  position: absolute;
+  top: 2%;
+  width: 100%;
+  overflow-x: hidden;
+  white-space: nowrap;
+  z-index: 0; }
 
 .dealerScore,
 .playerScore {
@@ -75,14 +85,35 @@ hr {
     font-size: 1.1em;
     text-shadow: 3px 3px 2px black; }
 
+.dealerArea,
+.playerArea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0; }
+
+.dealerArea {
+  bottom: 55vh; }
+
+.playerArea {
+  top: 60vh; }
+
 .cardRow {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center; }
 
 .bust, .blackjack, .push {
   text-align: center;
   position: absolute;
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 0;
   font-size: 8em;
   font-weight: lighter;
@@ -91,17 +122,139 @@ hr {
   font-family: 'All Cracked Out';
   animation: rubberBand 1s; }
   .bust.ng-hide-add, .ng-hide-add.blackjack, .ng-hide-add.push {
-    animation: fadeOut 0.8s; }
+    animation: zoomOut 1s; }
 
 .blackjack, .push {
   font-family: 'Showboat';
   font-size: 7em;
   color: goldenrod;
   animation: tada 2s; }
+  .blackjack.ng-hide-add, .ng-hide-add.push {
+    animation: zoomOut 1s; }
 
 .push {
   font-family: 'Blah';
-  color: yellow; }
+  border: 2px dotted gray;
+  color: yellow;
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+  top: 50vh;
+  left: 0;
+  width: 100%;
+  height: 0;
+  overflow-y: visible;
+  animation: none; }
+  .push.ng-hide-remove {
+    animation: lightSpeedIn 1s; }
+
+.controlDiv {
+  border: 5px solid black;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  width: 15vw;
+  z-index: 1; }
+  .controlDiv .playerCash {
+    font-family: 'Cash Currency';
+    font-weight: normal;
+    font-size: 3em;
+    color: palegreen;
+    text-shadow: 0 7px 2px black;
+    z-index: 1;
+    margin: 0; }
+  .controlDiv .buttonRow {
+    display: flex;
+    justify-content: space-around; }
+    .controlDiv .buttonRow button {
+      padding: 5%;
+      flex-grow: 1; }
+
+.betDiv {
+  border: 5px double white;
+  border-radius: 10px;
+  background-color: white;
+  background-image: url("../images/chips.jpg");
+  background-size: cover;
+  background-position: bottom;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  height: 40%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 5%; }
+  .betDiv.ng-hide-remove {
+    animation: bounceInDown 1s; }
+  .betDiv.ng-hide-add {
+    animation: bounceOutUp 1s; }
+  .betDiv .betLabel, .betDiv .bet, .betDiv .makeBet {
+    font-size: 3em;
+    text-align: center;
+    margin: 0;
+    color: black;
+    border-radius: 10px;
+    background-color: rgba(253, 245, 230, 0.5);
+    padding: 1%;
+    text-shadow: 0 2px 2px white; }
+  .betDiv .bet {
+    background-color: white;
+    text-shadow: none;
+    width: 35%;
+    padding: 0; }
+  .betDiv .makeBet {
+    background-color: gainsboro;
+    text-shadow: none; }
+    .betDiv .makeBet:hover {
+      background-color: silver; }
+
+.endOfRound, .gameOver {
+  border: 5px solid black;
+  border-radius: 10px;
+  background-color: rgba(220, 220, 220, 0.7);
+  font-family: 'Lounge Bait';
+  position: absolute;
+  z-index: 1;
+  top: 40%;
+  left: 15%;
+  height: 25%;
+  width: 70%;
+  font-size: 7em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 3px rgba(0, 0, 0, 0.5); }
+  .endOfRound.ng-hide-remove, .ng-hide-remove.gameOver {
+    animation: zoomIn 1s; }
+  .endOfRound.ng-hide-add, .ng-hide-add.gameOver {
+    animation: zoomOut 1s; }
+  .endOfRound .playAgain, .gameOver .playAgain {
+    font-size: 0.25em; }
+    .endOfRound .playAgain:hover, .gameOver .playAgain:hover {
+      color: white;
+      cursor: pointer; }
+
+.gameOver {
+  font-family: 'Press Start';
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  position: relative; }
+  .gameOver span {
+    z-index: 1; }
+
+.hidden {
+  visibility: hidden; }
 
 bj-card {
   position: relative;
@@ -113,6 +266,8 @@ bj-card {
   padding: 1%;
   margin: 1%;
   display: inline-block; }
+  bj-card.ng-leave {
+    animation: zoomOut 1s; }
   bj-card.dealer:nth-of-type(n + 2) {
     background-image: url("../images/card_back.jpeg");
     background-size: cover; }
