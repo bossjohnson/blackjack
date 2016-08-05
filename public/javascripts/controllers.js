@@ -34,6 +34,7 @@ function blackjackController($scope, cardService, $timeout) {
     }
 
     $scope.deal = function() {
+        $scope.view.savedBet = $scope.view.playerBet;
         $scope.view.deck = $scope.buildDeck();
         $scope.view.deck.shuffle();
         $scope.view.bettingPhase = false;
@@ -49,7 +50,7 @@ function blackjackController($scope, cardService, $timeout) {
             if ($scope.view.playerHand.value === 21) {
                 $scope.view.playerBlackjack = true;
                 $scope.view.winner = checkForWinner();
-                $scope.view.playerCash += $scope.view.playerBet * 2.5;
+                $scope.view.playerCash += $scope.view.savedBet * 2.5;
             }
 
             // Dealer's Hand
@@ -92,11 +93,11 @@ function blackjackController($scope, cardService, $timeout) {
 
         $scope.view.winner = checkForWinner();
         if ($scope.view.winner === 'player') {
-            $scope.view.playerCash += $scope.view.playerBet * 2;
+            $scope.view.playerCash += $scope.view.savedBet * 2;
         }
-    }
-    if ($scope.view.winner === 'push') {
-        $scope.view.playerCash += $scope.view.playerBet;
+        if ($scope.view.winner === 'push') {
+            $scope.view.playerCash += $scope.view.savedBet;
+        }
     }
 
 

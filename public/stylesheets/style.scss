@@ -23,6 +23,10 @@
     font-family: 'Blah';
     src: url("../fonts/blah.ttf");
 }
+@font-face {
+    font-family: 'Press Start';
+    src: url("../fonts/PressStart2P.ttf");
+}
 // General Styling
 * {
     box-sizing: border-box;
@@ -144,13 +148,17 @@ hr {
 .push {
     @extend .blackjack;
     font-family: 'Blah';
+    border: 2px dotted gray;
     color: yellow;
     position: absolute;
     text-align: center;
     z-index: 1;
-    top: 40vh;
+    top: 50vh;
     left: 0;
     width: 100%;
+    height: 0;
+    overflow-y: visible;
+    animation: none;
     &.ng-hide-remove {
         animation: lightSpeedIn 1s;
     }
@@ -222,7 +230,7 @@ hr {
         @extend .betLabel;
         background-color: white;
         text-shadow: none;
-        width: 25%;
+        width: 35%;
         padding: 0;
     }
     .makeBet {
@@ -268,8 +276,20 @@ hr {
         }
     }
 }
+.gameOver {
+    @extend .endOfRound;
+    font-family: 'Press Start';
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    position: relative;
+    span {
+        z-index: 1;
+    }
+    img {}
+}
 .hidden {
-    opacity: 0;
+    visibility: hidden;
 }
 // Angular Directives
 bj-card {

@@ -16,6 +16,9 @@
 @font-face {
   font-family: 'Blah';
   src: url("../fonts/blah.ttf"); }
+@font-face {
+  font-family: 'Press Start';
+  src: url("../fonts/PressStart2P.ttf"); }
 * {
   box-sizing: border-box;
   margin: 0;
@@ -131,13 +134,17 @@ hr {
 
 .push {
   font-family: 'Blah';
+  border: 2px dotted gray;
   color: yellow;
   position: absolute;
   text-align: center;
   z-index: 1;
-  top: 40vh;
+  top: 50vh;
   left: 0;
-  width: 100%; }
+  width: 100%;
+  height: 0;
+  overflow-y: visible;
+  animation: none; }
   .push.ng-hide-remove {
     animation: lightSpeedIn 1s; }
 
@@ -201,7 +208,7 @@ hr {
   .betDiv .bet {
     background-color: white;
     text-shadow: none;
-    width: 25%;
+    width: 35%;
     padding: 0; }
   .betDiv .makeBet {
     background-color: gainsboro;
@@ -209,7 +216,7 @@ hr {
     .betDiv .makeBet:hover {
       background-color: silver; }
 
-.endOfRound {
+.endOfRound, .gameOver {
   border: 5px solid black;
   border-radius: 10px;
   background-color: rgba(220, 220, 220, 0.7);
@@ -227,18 +234,27 @@ hr {
   justify-content: center;
   align-items: center;
   box-shadow: 0 5px 3px rgba(0, 0, 0, 0.5); }
-  .endOfRound.ng-hide-remove {
+  .endOfRound.ng-hide-remove, .ng-hide-remove.gameOver {
     animation: zoomIn 1s; }
-  .endOfRound.ng-hide-add {
+  .endOfRound.ng-hide-add, .ng-hide-add.gameOver {
     animation: zoomOut 1s; }
-  .endOfRound .playAgain {
+  .endOfRound .playAgain, .gameOver .playAgain {
     font-size: 0.25em; }
-    .endOfRound .playAgain:hover {
+    .endOfRound .playAgain:hover, .gameOver .playAgain:hover {
       color: white;
       cursor: pointer; }
 
+.gameOver {
+  font-family: 'Press Start';
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  position: relative; }
+  .gameOver span {
+    z-index: 1; }
+
 .hidden {
-  opacity: 0; }
+  visibility: hidden; }
 
 bj-card {
   position: relative;
