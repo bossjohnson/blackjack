@@ -84,13 +84,6 @@ function blackjackController($scope, cardService, $timeout) {
         // dealer must hit soft 17
         dealerDraw();
 
-        $scope.view.winner = checkForWinner();
-        if ($scope.view.winner === 'player') {
-            $scope.view.playerCash += $scope.view.savedBet * 2;
-        }
-        if ($scope.view.winner === 'push') {
-            $scope.view.playerCash += $scope.view.savedBet;
-        }
 
         function dealerDraw() {
             if (dealerHand.value <= 17) {
@@ -102,6 +95,16 @@ function blackjackController($scope, cardService, $timeout) {
                         return;
                     }
                     dealerDraw();
+                }, 700);
+            } else {
+                $timeout(function() {
+                    $scope.view.winner = checkForWinner();
+                    if ($scope.view.winner === 'player') {
+                        $scope.view.playerCash += $scope.view.savedBet * 2;
+                    }
+                    if ($scope.view.winner === 'push') {
+                        $scope.view.playerCash += $scope.view.savedBet;
+                    }
                 }, 700);
             }
         }
