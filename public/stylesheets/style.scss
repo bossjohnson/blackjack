@@ -88,6 +88,12 @@ hr {
     color: black;
     text-shadow: 1px 1px white;
     font-family: 'Lounge Bait';
+    &.ng-hide-remove {
+        animation: fadeIn 0.5s;
+    }
+    &.ng-hide-add {
+        animation: fadeOut 0.5s;
+    }
     .score {
         color: white;
         font-family: 'Roboto', sans-serif;
@@ -278,6 +284,7 @@ hr {
 // Angular Directives
 bj-card {
     position: relative;
+    bottom: 0;
     border: 2px solid black;
     border-radius: 8px;
     background-color: white;
@@ -286,15 +293,28 @@ bj-card {
     padding: 1%;
     margin: 1%;
     display: inline-block;
+    transform: rotateY(0deg);
+    transition: 0.5s;
     &.ng-enter {
         animation: fadeInDown 1s;
     }
     &.ng-leave {
         animation: zoomOut 1s;
     }
-    &.dealer:nth-of-type(n + 2) {
+    &.flipped:nth-of-type(n + 2) {
+        bottom: 0;
         background-image: url("../images/card_back.jpeg");
         background-size: cover;
+        transform: rotateY(180deg);
+        * {
+            opacity: 0;
+        }
+    }
+    &.flipped-half:nth-of-type(n + 2) {
+        bottom: 20px;
+        background-image: url("../images/card_back.jpeg");
+        background-size: cover;
+        transform: rotateY(90deg);
         * {
             opacity: 0;
         }
