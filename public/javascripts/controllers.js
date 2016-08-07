@@ -89,24 +89,20 @@ function blackjackController($scope, cardService, $timeout) {
         }, 500);
         $timeout(function() {
             dealerHand.value = handValue(dealerHand);
+            dealerDraw();
         }, 1000);
 
-        // dealer must hit soft 17
-        var dealerAces = false;
-        if (dealerHand.value <= 17) {
-            dealerDraw();
-        }
-
         function dealerDraw() {
+            var dealerAces = false;
             for (var i = 0; i < dealerHand.cards.length; i++) {
                 if (dealerHand.cards[i].rank === 'A') {
                     dealerAces = true;
                 }
             }
+            // dealer must hit soft 17
             if (dealerHand.value < 17 || (dealerHand.value === 17 && dealerAces)) {
                 $timeout(function() {
                     dealerHand.cards.push(deck.cards.pop());
-                    console.log('dealerHand.value:', dealerHand.value);
                     $timeout(function() {
                         dealerHand.value = handValue(dealerHand);
                         if (dealerHand.value > 21) {
