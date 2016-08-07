@@ -78,6 +78,12 @@ hr {
   color: black;
   text-shadow: 1px 1px white;
   font-family: 'Lounge Bait'; }
+  .dealerScore.ng-hide-remove,
+  .playerScore.ng-hide-remove {
+    animation: fadeIn 0.5s; }
+  .dealerScore.ng-hide-add,
+  .playerScore.ng-hide-add {
+    animation: fadeOut 0.5s; }
   .dealerScore .score,
   .playerScore .score {
     color: white;
@@ -244,6 +250,7 @@ hr {
 
 bj-card {
   position: relative;
+  bottom: 0;
   border: 2px solid black;
   border-radius: 8px;
   background-color: white;
@@ -251,15 +258,26 @@ bj-card {
   height: 14vw;
   padding: 1%;
   margin: 1%;
-  display: inline-block; }
+  display: inline-block;
+  transform: rotateY(0deg);
+  transition: 0.5s; }
   bj-card.ng-enter {
     animation: fadeInDown 1s; }
   bj-card.ng-leave {
     animation: zoomOut 1s; }
-  bj-card.dealer:nth-of-type(n + 2) {
+  bj-card.flipped:nth-of-type(n + 2) {
+    bottom: 0;
     background-image: url("../images/card_back.jpeg");
-    background-size: cover; }
-    bj-card.dealer:nth-of-type(n + 2) * {
+    background-size: cover;
+    transform: rotateY(180deg); }
+    bj-card.flipped:nth-of-type(n + 2) * {
+      opacity: 0; }
+  bj-card.flipped-half:nth-of-type(n + 2) {
+    bottom: 20px;
+    background-image: url("../images/card_back.jpeg");
+    background-size: cover;
+    transform: rotateY(90deg); }
+    bj-card.flipped-half:nth-of-type(n + 2) * {
       opacity: 0; }
   bj-card .red {
     color: red; }

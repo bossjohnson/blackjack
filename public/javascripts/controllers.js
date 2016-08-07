@@ -46,20 +46,22 @@ function blackjackController($scope, cardService, $timeout) {
 
             // Player's Hand
             $scope.view.playerHand.cards = [deck.cards.pop(), deck.cards.pop()];
-            $scope.view.playerHand.value = handValue($scope.view.playerHand);
-            if ($scope.view.playerHand.value === 21) {
-                $scope.view.playerBlackjack = true;
-                $scope.view.winner = checkForWinner();
-                $scope.view.playerCash += $scope.view.savedBet * 2.5;
-            }
-
-            // Dealer's Hand
             $scope.view.dealerHand.cards = [deck.cards.pop(), deck.cards.pop()];
-            $scope.view.dealerHand.value = partialHandValue($scope.view.dealerHand);
-            if ($scope.view.dealerHand.value === 21 && !$scope.view.playerBlackjack) {
-                $scope.view.dealerBlackjack = true;
-                $scope.view.winner = checkForWinner();
-            }
+            $timeout(function() {
+                $scope.view.playerHand.value = handValue($scope.view.playerHand);
+                if ($scope.view.playerHand.value === 21) {
+                    $scope.view.playerBlackjack = true;
+                    $scope.view.winner = checkForWinner();
+                    $scope.view.playerCash += $scope.view.savedBet * 2.5;
+                }
+
+                // Dealer's Hand
+                $scope.view.dealerHand.value = partialHandValue($scope.view.dealerHand);
+                if ($scope.view.dealerHand.value === 21 && !$scope.view.playerBlackjack) {
+                    $scope.view.dealerBlackjack = true;
+                    $scope.view.winner = checkForWinner();
+                }
+            }, 1000);
         }, 1000);
     };
 
@@ -78,27 +80,59 @@ function blackjackController($scope, cardService, $timeout) {
         var deck = $scope.view.deck;
         var dealerHand = $scope.view.dealerHand;
         $scope.view.disableControls = true;
-        $scope.view.showDealerHand = true;
-        dealerHand.value = handValue(dealerHand);
 
-        // dealer must hit soft 17
-        while (dealerHand.value <= 17) {
-            dealerHand.cards.push(deck.cards.pop());
+        $scope.view.halfFlip = true;
+
+        $timeout(function() {
+            $scope.view.halfFlip = false;
+            $scope.view.showDealerHand = true;
+        }, 500);
+        $timeout(function() {
             dealerHand.value = handValue(dealerHand);
-            if (dealerHand.value > 21) {
-                $scope.view.dealerBust = true;
-                break;
+            dealerDraw();
+        }, 1000);
+
+        function dealerDraw() {
+            var dealerAces = false;
+            for (var i = 0; i < dealerHand.cards.length; i++) {
+                if (dealerHand.cards[i].rank === 'A') {
+                    dealerAces = true;
+                }
+            }
+            // dealer must hit soft 17
+            if (dealerHand.value < 17 || (dealerHand.value === 17 && dealerAces)) {
+                $timeout(function() {
+                    dealerHand.cards.push(deck.cards.pop());
+                    $timeout(function() {
+                        dealerHand.value = handValue(dealerHand);
+                        if (dealerHand.value > 21) {
+                            $scope.view.dealerBust = true;
+                            $scope.view.winner = checkForWinner();
+                            if ($scope.view.winner === 'player') {
+                                $scope.view.playerCash += $scope.view.savedBet * 2;
+                            }
+                            if ($scope.view.winner === 'push') {
+                                $scope.view.playerCash += $scope.view.savedBet;
+                            }
+                            return;
+                        }
+                        dealerDraw();
+                    }, 1000);
+                }, 1000);
+            } else {
+                $timeout(function() {
+                    $scope.view.winner = checkForWinner();
+                    if ($scope.view.winner === 'player') {
+                        $scope.view.playerCash += $scope.view.savedBet * 2;
+                    }
+                    if ($scope.view.winner === 'push') {
+                        $scope.view.playerCash += $scope.view.savedBet;
+                    }
+                }, 1000);
             }
         }
-
-        $scope.view.winner = checkForWinner();
-        if ($scope.view.winner === 'player') {
-            $scope.view.playerCash += $scope.view.savedBet * 2;
-        }
-        if ($scope.view.winner === 'push') {
-            $scope.view.playerCash += $scope.view.savedBet;
-        }
     }
+
 
 
     function checkForWinner() {

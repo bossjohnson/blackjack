@@ -69,13 +69,13 @@
         <div class="dealerArea">
 
             <h2 class="dealerScore"
-                ng-show="view.dealerHand.cards">DEALER:&nbsp; <span class="score">{{ view.dealerHand.value }}</span></h2>
+                ng-show="view.dealerHand.value">DEALER:&nbsp; <span class="score">{{ view.dealerHand.value }}</span></h2>
             <div class="cardRow">
                 <bj-card ng-repeat="card in view.dealerHand.cards track by $index"
                     rank="card.rank"
                     suit="card.suit"
                     collection="collect(card.rank)"
-                    ng-class="{dealer: !view.showDealerHand}">
+                    ng-class="{flipped: !view.showDealerHand, 'flipped-half': view.halfFlip}">
                 </bj-card>
                 <h1 class="bust"
                     ng-show="view.dealerBust">BUST</h1>
@@ -89,7 +89,7 @@
         <div class="playerArea">
 
             <h2 class="playerScore"
-                ng-show="view.playerHand.cards">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
+                ng-show="view.playerHand.value">PLAYER:&nbsp; <span class="score">{{ view.playerHand.value }}</span></h2>
             <div class="cardRow">
                 <bj-card ng-repeat="card in view.playerHand.cards track by $index"
                     rank="card.rank"
